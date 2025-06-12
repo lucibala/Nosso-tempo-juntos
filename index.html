@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Do primeiro dia ao "para sempre"</title>
+    <meta charset="UTF-8">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            background: #fff5f5; 
+            padding: 50px; 
+        }
+        h1 { 
+            color: #ff6b6b; 
+            font-size: 2.5em;
+        }
+        #contador { 
+            font-size: 2em; 
+            color: #ff4757; 
+            margin: 30px 0;
+        }
+        img { 
+            border-radius: 50%; 
+            width: 150px; 
+            margin: 20px; 
+        }
+        .footer { 
+            margin-top: 40px; 
+            color: #666; 
+        }
+    </style>
+</head>
+<body>
+    <h1>❤️ Do primeiro dia ao "para sempre" ❤️</h1>
+    <!-- (OPCIONAL: Adicione uma foto de vocês aqui!) -->
+    <!-- <img src="LINK_DA_FOTO.jpg" alt="Nós"> -->
+    <div id="contador">Carregando...</div>
+    <p>Nosso amor começou em 01/09/2021 e só cresce a cada dia.</p>
+    <div class="footer">Feito com amor para você!</div>
+
+    <script>
+        const inicio = new Date("2021-09-01");
+        function atualizarContador() {
+            const agora = new Date();
+            const diferenca = agora - inicio;
+            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("contador").innerHTML = 
+                ${dias} dias, ${horas} horas e ${minutos} minutos juntos!;
+        }
+        setInterval(atualizarContador, 1000);
+        atualizarContador(); // Atualiza imediatamente
+    </script>
+</body>
+</html>
