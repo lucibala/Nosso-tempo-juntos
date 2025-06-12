@@ -4,51 +4,90 @@
     <title>Do primeiro dia ao "para sempre"</title>
     <meta charset="UTF-8">
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            text-align: center; 
-            background: #fff5f5; 
-            padding: 50px; 
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: #fff5f5;
+            padding: 20px;
+            color: #333;
         }
-        h1 { 
-            color: #ff6b6b; 
+        h1 {
+            color: #ff6b6b;
             font-size: 2.5em;
+            margin-bottom: 10px;
         }
-        #contador { 
-            font-size: 2em; 
-            color: #ff4757; 
-            margin: 30px 0;
+        #contador {
+            font-size: 1.8em;
+            color: #ff4757;
+            margin: 20px 0;
+            line-height: 1.6;
         }
-        img { 
-            border-radius: 50%; 
-            width: 150px; 
-            margin: 20px; 
+        .destaque {
+            font-weight: bold;
+            color: #d63031;
         }
-        .footer { 
-            margin-top: 40px; 
-            color: #666; 
+        img {
+            border-radius: 50%;
+            width: 150px;
+            margin: 20px auto;
+            display: block;
+            border: 5px solid #ff7675;
+        }
+        .footer {
+            margin-top: 30px;
+            color: #666;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
     <h1>❤️ Do primeiro dia ao "para sempre" ❤️</h1>
-    <!-- (OPCIONAL: Adicione uma foto de vocês aqui!) -->
-    <!-- <img src="LINK_DA_FOTO.jpg" alt="Nós"> -->
-    <div id="contador">Carregando...</div>
-    <p>Nosso amor começou em 01/09/2021 e só cresce a cada dia.</p>
-    <div class="footer">Feito com amor para você!</div>
+    
+    <!-- (OPCIONAL: Adicione uma foto de vocês!) -->
+    <!-- <img src="foto-de-voces.jpg" alt="Nós"> -->
+    
+    <div id="contador">
+        <div>Juntos há: <span id="tempo"></span></div>
+        <div><span id="detalhes"></span></div>
+    </div>
+    
+    <p>Desde 1º de setembro de 2021, nosso amor só cresce.</p>
+    <div class="footer">Cada segundo ao seu lado é um presente!</div>
 
     <script>
-        const inicio = new Date("2021-09-01");
+        const inicio = new Date("2021-09-01T00:00:00");
+        
         function atualizarContador() {
             const agora = new Date();
-            const diferenca = agora - inicio;
-            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById("contador").innerHTML = 
-                ${dias} dias, ${horas} horas e ${minutos} minutos juntos!;
+            const diff = Math.floor(agora - inicio);
+            
+            // Cálculos
+            const segundosTotal = Math.floor(diff / 1000);
+            const minutosTotal = Math.floor(segundosTotal / 60);
+            const horasTotal = Math.floor(minutosTotal / 60);
+            const diasTotal = Math.floor(horasTotal / 24);
+            
+            const anos = Math.floor(diasTotal / 365);
+            const meses = Math.floor((diasTotal % 365) / 30);
+            const dias = diasTotal % 30;
+            const horas = horasTotal % 24;
+            const minutos = minutosTotal % 60;
+            const segundos = segundosTotal % 60;
+            
+            // Exibição formatada
+            document.getElementById("tempo").innerHTML = `
+                <span class="destaque">${anos} anos</span>, 
+                <span class="destaque">${meses} meses</span>, 
+                <span class="destaque">${dias} dias</span>
+            `;
+            
+            document.getElementById("detalhes").innerHTML = `
+                <span class="destaque">${horas} horas</span>, 
+                <span class="destaque">${minutos} minutos</span>, 
+                <span class="destaque">${segundos} segundos</span>
+            `;
         }
+        
         setInterval(atualizarContador, 1000);
         atualizarContador(); // Atualiza imediatamente
     </script>
